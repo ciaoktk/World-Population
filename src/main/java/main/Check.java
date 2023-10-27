@@ -6,14 +6,14 @@ public class Check {
 	private Connection conn = DBConnect.getConn().conn;
 	public boolean checkMenuOption(String input) {
 		return switch (input) {
-			case "1", "2", "3", "4", "5", "6" -> true;
+			case "1", "2", "3", "4", "5" -> true;
 			default -> {
-				System.out.println("Enter only number between 1 and 6.");
+				System.out.println("Enter only number between 1 and 5.");
 				yield false;
 			}
 		};
 	}
-	public boolean checkRankOption(String input) {
+	public boolean checkReportOption(String input) {
 		return switch (input) {
 			case "1", "2" -> true;
 			default -> {
@@ -32,7 +32,7 @@ public class Check {
 		};
 	}
 
-	public boolean checkISO(String input) throws Exception {
+	public boolean checkISO(String input) {
 		try {
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT iso_name FROM population");
 			ResultSet resultSet = selectStatement.executeQuery();
@@ -48,7 +48,8 @@ public class Check {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		throw new Exception("Please enter correct ISO name in three letters.");
+		System.out.println("Please enter correct ISO name in three letters.");
+		return false;
 	}
 
 	public boolean checkColumn(String input) throws Exception {
@@ -65,7 +66,6 @@ public class Check {
 										"========================================================");
 				}
 			}
-
 			resultSet.close();
 			selectStatement.close();
 		} catch (SQLException e) {

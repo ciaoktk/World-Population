@@ -3,13 +3,12 @@ package main;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class ReRankWorldRank {
-    private Connection conn = DBConnect.getConn().conn;
+public class ReRankWorldRank implements WorldPopulationOperation{
     ReRankWorldRank() {
-        reRank();
+        operate();
     }
 
-    private void reRank() {
+    public void operate() {
         String columnName = "2023_population";
         LinkedList<Integer> sortedRank = new LinkedList<>();
 

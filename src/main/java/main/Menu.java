@@ -7,6 +7,7 @@ public class Menu {
     private Scanner sc = new Scanner(System.in);
     private Check check = new Check();
     private Connection conn;
+    private OperationFactory op = new OperationFactory();
     Menu() {
         conn = DBConnect.getConn().conn;
         displayMenu();
@@ -32,18 +33,11 @@ public class Menu {
     }
     private void displayMenu() {
         switch(menu()) {
-            case 1: new InsertNewPopulation(); break;
-            case 2: new UpdatePopulation(); break;
-            case 3: new ReRankWorldRank(); break;
-            case 4: new Report(); break;
-            case 5: {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                System.exit(0);
-            }
+            case 1: op.getOperation(1); break;
+            case 2: op.getOperation(2); break;
+            case 3: op.getOperation(3); break;
+            case 4: op.getOperation(4); break;
+            case 5: op.getOperation(5);
         }
         displayMenu();
     }

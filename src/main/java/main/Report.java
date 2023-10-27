@@ -12,12 +12,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Report {
-    private Scanner sc = new Scanner(System.in);
-    private Check check = new Check();
-    private Connection conn = DBConnect.getConn().conn;
+public class Report implements WorldPopulationOperation{
     Report() {
-        displayReport();
+        operate();
     }
 
     private int reportMenu() {
@@ -33,10 +30,10 @@ public class Report {
         do {
             System.out.print("Enter report number 1 or 2: ");
             option = sc.nextLine();
-        } while(!check.checkRankOption(option));
+        } while(!check.checkReportOption(option));
         return Integer.parseInt(option);
     }
-    private void displayReport() {
+    public void operate() {
         switch(reportMenu()) {
             case 1: reportMostPopulated(); break;
             case 2: reportLargestCountry(); break;

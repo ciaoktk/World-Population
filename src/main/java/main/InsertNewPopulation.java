@@ -3,13 +3,11 @@ package main;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class InsertNewPopulation {
-    private Connection conn = DBConnect.getConn().conn;
-    private Check check = new Check();
+public class InsertNewPopulation implements WorldPopulationOperation{
     InsertNewPopulation() {
-        insert();
+        operate();
     }
-    private void insert() {
+    public void operate() {
         String filepath = "data/new_population.csv";
         LinkedList<Population> latestPopulation = ReadCSV.readData(filepath);
 
