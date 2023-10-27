@@ -1,11 +1,9 @@
 package main;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Check {
+	private Connection conn = DBConnect.getConn().conn;
 	public boolean checkMenuOption(String input) {
 		return switch (input) {
 			case "1", "2", "3", "4", "5", "6" -> true;
@@ -35,7 +33,6 @@ public class Check {
 	}
 
 	public boolean checkISO(String input) throws Exception {
-		Connection conn = DBConnect.getConn().conn;
 		try {
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT iso_name FROM population");
 			ResultSet resultSet = selectStatement.executeQuery();
@@ -45,9 +42,35 @@ public class Check {
 					return true;
 				}
 			}
+			resultSet.close();
+			selectStatement.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		throw new Exception("Please enter correct ISO name in three letters.");
+	}
+
+	public boolean checkColumn(String input) throws Exception {
+		try {
+			PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM population");
+			ResultSet resultSet = selectStatement.executeQuery();
+			ResultSetMetaData rsMetaData = resultSet.getMetaData();
+			int count = rsMetaData.getColumnCount();
+
+			for (int i = 1; i <= count; i++) {
+				if(rsMetaData.getColumnName(i).equalsIgnoreCase(input)) {
+					throw new Exception("========================================================\n" +
+										"                Column is already added.                \n" +
+										"========================================================");
+				}
+			}
+
+			resultSet.close();
+			selectStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 }
