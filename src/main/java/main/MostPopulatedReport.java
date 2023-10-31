@@ -12,36 +12,17 @@ public class MostPopulatedReport {
         this.latestPopulation = latestPopulation;
         this.worldRank = worldRank;
     }
-
     public String getCountryName() {
         return countryName;
     }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
     public String getIsoName() {
         return isoName;
     }
-
-    public void setIsoName(String isoName) {
-        this.isoName = isoName;
-    }
-
     public int getLatestPopulation() {
         return latestPopulation;
     }
-
-    public void setLatestPopulation(int latestPopulation) {
-        this.latestPopulation = latestPopulation;
-    }
-
     public int getWorldRank() {
         return worldRank;
     }
-
-    public void setWorldRank(int worldRank) {
-        this.worldRank = worldRank;
-    }
 }
+

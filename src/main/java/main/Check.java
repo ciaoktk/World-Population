@@ -3,7 +3,9 @@ package main;
 import java.sql.*;
 
 public class Check {
-	private Connection conn = DBConnect.getConn().conn;
+
+	private Connection conn = DBConnect.getConn();
+
 	public boolean checkMenuOption(String input) {
 		return switch (input) {
 			case "1", "2", "3", "4", "5" -> true;
@@ -31,7 +33,6 @@ public class Check {
 			}
 		};
 	}
-
 	public boolean checkISO(String input) {
 		try {
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT iso_name FROM population");
@@ -51,7 +52,6 @@ public class Check {
 		System.out.println("Please enter correct ISO name in three letters.");
 		return false;
 	}
-
 	public boolean checkColumn(String input) throws Exception {
 		try {
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM population");

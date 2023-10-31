@@ -9,7 +9,7 @@ public class DBConnect {
     private String dbname = "world_population";
     private String username = "root";
     private String password = "";
-    public Connection conn;
+    private Connection conn;
     private DBConnect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -20,7 +20,8 @@ public class DBConnect {
         }
     }
     private static DBConnect dbConnect = new DBConnect();
-    public static DBConnect getConn() {
-        return dbConnect;
+    public static Connection getConn() {
+        return dbConnect.conn;
     }
 }
+

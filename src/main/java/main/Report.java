@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Report implements WorldPopulationOperation{
+
     Report() {
         operate();
     }
@@ -33,6 +34,8 @@ public class Report implements WorldPopulationOperation{
         } while(!check.checkReportOption(option));
         return Integer.parseInt(option);
     }
+
+    @Override
     public void operate() {
         switch(reportMenu()) {
             case 1: reportMostPopulated(); break;
@@ -62,7 +65,6 @@ public class Report implements WorldPopulationOperation{
             at.addRule();
             at.addRow(header);
             at.addRule();
-
             for(MostPopulatedReport m: mostPopulated) {
                 List<Object> data = Arrays.asList(m.getCountryName(), m.getIsoName(), m.getLatestPopulation(), m.getWorldRank());
                 at.addRow(data);
@@ -70,7 +72,6 @@ public class Report implements WorldPopulationOperation{
             }
             at.setTextAlignment(TextAlignment.CENTER);
             System.out.println(at.render());
-
             resultSet.close();
             selectStatement.close();
         } catch (SQLException e) {
@@ -84,9 +85,9 @@ public class Report implements WorldPopulationOperation{
         LinkedList<LargestCountryReport> largestCountry = new LinkedList<>();
 
         try {
-            PreparedStatement selectStatement = conn.prepareStatement("SELECT country_name, iso_name, area_sq_km, " + originalColumnName + ", " + newColumnName + ", world_rank FROM population ORDER BY area_sq_km DESC");
+            PreparedStatement selectStatement = conn.prepareStatement("SELECT country_name, iso_name, area_sq_km, " + originalColumnName + ", "
+                    + newColumnName + ", world_rank FROM population ORDER BY area_sq_km DESC");
             ResultSet resultSet = selectStatement.executeQuery();
-
             for(int i = 0; i < 10; i++) {
                 if (resultSet.next()) {
                     largestCountry.add(new LargestCountryReport(resultSet.getString("country_name"), resultSet.getString(
@@ -101,7 +102,6 @@ public class Report implements WorldPopulationOperation{
             at.addRule();
             at.addRow(header);
             at.addRule();
-
             for(LargestCountryReport l: largestCountry) {
                 List<Object> data = Arrays.asList(l.getCountryName(), l.getIsoName(), l.getTotalArea(), l.getGrowthRate() + "%", l.getWorldRank());
                 at.addRow(data);
@@ -109,7 +109,6 @@ public class Report implements WorldPopulationOperation{
             }
             at.setTextAlignment(TextAlignment.CENTER);
             System.out.println(at.render());
-
             resultSet.close();
             selectStatement.close();
         } catch (SQLException e) {

@@ -20,31 +20,17 @@ public class LargestCountryReport {
     public String getCountryName() {
         return countryName;
     }
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
     public String getIsoName() {
         return isoName;
-    }
-    public void setIsoName(String isoName) {
-        this.isoName = isoName;
     }
     public int getTotalArea() {
         return totalArea;
     }
-    public void setTotalArea(int totalArea) {
-        this.totalArea = totalArea;
-    }
     public double getGrowthRate() {
         return growthRate;
-    }
-    public void setGrowthRate(double growthRate) {
-        this.growthRate = growthRate;
     }
     public int getWorldRank() {
         return worldRank;
     }
-    public void setWorldRank(int worldRank) {
-        this.worldRank = worldRank;
-    }
 }
+

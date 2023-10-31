@@ -3,12 +3,15 @@ package main;
 import java.util.Scanner;
 
 public class Menu {
+
     private Scanner sc = new Scanner(System.in);
     private Check check = new Check();
     private OperationFactory op = new OperationFactory();
+
     Menu() {
         displayMenu();
     }
+
     private int menu() {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("                          Menu                          ");
@@ -28,6 +31,7 @@ public class Menu {
         } while(!check.checkMenuOption(option));
         return Integer.parseInt(option);
     }
+
     private void displayMenu() {
         switch(menu()) {
             case 1: op.getOperation(1); break;

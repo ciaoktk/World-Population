@@ -5,9 +5,12 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 
 public class UpdatePopulation implements WorldPopulationOperation{
+
     UpdatePopulation() {
         operate();
     }
+
+    @Override
     public void operate() {
         String year, isoName = "";
         int newPopulation = 0;
@@ -16,12 +19,10 @@ public class UpdatePopulation implements WorldPopulationOperation{
             year = sc.nextLine();
         } while(!check.checkYear(year));
         String updateColumn = "" + year + "_population";
-
         do {
             System.out.print("Enter country ISO name: ");
             isoName = sc.nextLine();
         } while(!check.checkISO(isoName));
-
         boolean inputStatus = false;
         while(!inputStatus) {
             try {
@@ -52,6 +53,5 @@ public class UpdatePopulation implements WorldPopulationOperation{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

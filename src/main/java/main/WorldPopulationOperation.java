@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 public interface WorldPopulationOperation {
+    Connection conn = DBConnect.getConn();
     Scanner sc = new Scanner(System.in);
-    Connection conn = DBConnect.getConn().conn;
     Check check = new Check();
     void operate();
 }
+

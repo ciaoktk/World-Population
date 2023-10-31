@@ -2,8 +2,11 @@ package main;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 public class OperationFactory {
-    private Connection conn = DBConnect.getConn().conn;
+
+    private Connection conn = DBConnect.getConn();
+
     public WorldPopulationOperation getOperation(int option) {
         if (option == 1)
             return new InsertNewPopulation();
