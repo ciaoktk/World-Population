@@ -1,15 +1,12 @@
 package main;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.Scanner;
 
 public class Menu {
     private Scanner sc = new Scanner(System.in);
     private Check check = new Check();
-    private Connection conn;
     private OperationFactory op = new OperationFactory();
     Menu() {
-        conn = DBConnect.getConn().conn;
         displayMenu();
     }
     private int menu() {
