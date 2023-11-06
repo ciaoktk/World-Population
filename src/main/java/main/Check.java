@@ -4,8 +4,6 @@ import java.sql.*;
 
 public class Check {
 
-	private Connection conn = DBConnect.getConn();
-
 	public boolean checkMenuOption(String input) {
 		return switch (input) {
 			case "1", "2", "3", "4", "5" -> true;
@@ -34,6 +32,7 @@ public class Check {
 		};
 	}
 	public boolean checkISO(String input) {
+		Connection conn = DBConnect.getConn();
 		try {
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT iso_name FROM population");
 			ResultSet resultSet = selectStatement.executeQuery();
@@ -53,6 +52,7 @@ public class Check {
 		return false;
 	}
 	public boolean checkColumn(String input) throws Exception {
+		Connection conn = DBConnect.getConn();
 		try {
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM population");
 			ResultSet resultSet = selectStatement.executeQuery();
